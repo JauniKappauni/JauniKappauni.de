@@ -1,7 +1,4 @@
 <?php
-    session_start();
-?>
-<?php
     include("database.php")
 ?>
 <?php
@@ -40,7 +37,10 @@
         if($result->num_rows > 0){
             $user = $result->fetch_assoc();
             if($password == $user["password"]){
+                $_SESSION["user"] = $username;
                 echo"Login erfolgreich";
+                header("Location: dashboard.php");
+                exit();
             }
             else{
                 echo"Falsches Passwort";
